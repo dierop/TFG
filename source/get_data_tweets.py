@@ -41,27 +41,26 @@ def get_tweets_number_data():
         print("")
 
 
-get_tweets_number_data()
+#get_tweets_number_data()
 
 
 def stopwords_to_list_of_lists():
     fdict = []
     for p in pathlib.Path('stop_words').iterdir():
-        f = open(p, "r")
+        f = open(p, "r",encoding="utf-8")
         list_of_lists = []
         for line in f:
-            stripped_line = line.strip()
+            stripped_line = line.strip().encode("utf-8").decode("utf-8")
             list_of_lists.append(stripped_line)
         fdict.append(list_of_lists)
-        print("aquel" in list_of_lists)
         f.close()
-    js = json.dumps(fdict)
+    js = json.dumps(fdict, indent=4, sort_keys=True, ensure_ascii=False)
     f = open("stopwords_list.json", "w")
     f.write(js)
     f.close()
 
 
-# stopwords_to_list_of_lists()
+#stopwords_to_list_of_lists()
 
 def get_account_wv(account, stopword):
     cursor = mycol.find({"user.screen_name": account}, projection=["user.screen_name", "full_text"])
@@ -95,9 +94,8 @@ def get_topic_wv(topic, stopword):
         mycol.count_documents({"topic": topic, "user.screen_name": {"$in": accounts.get_accounts_temas()[topic]}}))
 
 
-def topics_wv():
-    f = open("stopwords_list.json", "r")
-    stopword = json.load(f)
+def topics_wv(stopword):
+
     dic = dict()
     for topic in accounts.get_accounts_tests().keys():
         total = get_topic_wv(topic, stopword)
@@ -147,7 +145,10 @@ def calculate_macro_f1(dic):
     real=[num//accounts.get_length_one_test_theme() for num in range(0,len(accounts.get_test_accounts_in_order()))]
     result=f1_score(y_true=real,y_pred=predict,average="macro")
     print(result)
-#topics_wv()
+
+f = open("stopwords_list.json", "r")
+stopword = json.load(f)
+[topics_wv(stop) for stop in stopword]
 
 # get_distances_with_divs()
 
