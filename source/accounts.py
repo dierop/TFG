@@ -1,27 +1,44 @@
 def get_accounts_temas():
     return{
-        "cocina": ["RecetasdeCocina","Cocina_Monstruo","derechupete","mcalabajio","cocinaparados","Dulcesbocados"],
+        "Cocina": ["RecetasdeCocina","Cocina_Monstruo","derechupete","mcalabajio","cocinaparados","Dulcesbocados","CocinayVino","CanalCocina","directopaladar","RecetasdeCocina",
+                  "GastroSER","GASTROactitud","Gastronomiaycia","DGastronomia","GastronomiaCyL","VinosdeCebreros","Degusta_cyl","tierradesabor","MiquelSen","GastronomadeGa2",
+                  "vlcgastronomica","andgastrotur","GastronomiaVeg","gastrosingular","HeraldoGastro","gourmeturbano","bienmesabe_","gourmetjournal","recetasen140","gdegastronomia"],
 
-        "deportes": ["DeportesCuatro","ABCDeportes","2010MisterChip","mundodeportivo","diarioas","CaracolDeportes"],
+        "Deportes": ["DeportesCuatro","ABCDeportes","2010MisterChip","mundodeportivo","diarioas","CaracolDeportes","valenciacf","marca","FOXDeportes","ESPNtenis",
+                     "MarcaBasket","EFEyDeporte","deportegob","rfef","Tokyo2020es","teledeporte","deportes_rtve","podium_EE","atletismoRFEA","Antena3Deportes",
+                     "mundodeportivo","yosoynoticia_","sportsmadeinusa","20mDeportes","ESPNDeportes","atletismoSomos","EPdeportes","EsFutbol_Ingles","deporte_mujer","destelladeporte"],
 
-        "informatica": ["360_Hardware","QNAPEspana","elpais_tec","xataka","genbeta","MuyComputerPRO"],
+        "Tecnología y informática": ["360_Hardware","QNAPEspana","elpais_tec","xataka","genbeta","MuyComputerPRO","computerhoy","juanklore","TecnosferaET","TecnoEspectador",
+                                     "LaMMordida","Ftv_Fractal","TopesdGama","Revista_ByteTI","elpais_tec","pixeltech","jlacort","adslzone","ZoomNet_tve","ReformaGadgets",
+                                     "ENTERCO","tecnocat01","Teknautas","mixx_io","jmatuk","Giz_Tab","iSenaCode","pisapapeles","MovilZona","MalditaTech"],
 
-        "politica": ["PODEMOS","PSOE","populares","CiudadanosCs","InesArrimadas","sanchezcastejon"],
+        "Politica": ["PODEMOS","PSOE","populares","CiudadanosCs","InesArrimadas","sanchezcastejon","vox_es","Santi_ABASCAL","PabloIglesias","Politica_LR",
+                     "ierrejon","tuvozalmundo","juanpalop","AquiEuropa","begonavillacis","Tonicanto1","alvaro7carvajal","lugaricano","Albert_Rivera","IzquierdaUnida",
+                     "MonederoJC","ccifuentes","MisspoliticaMg","mundo_mas_justo","edosmilaragon","amnistiaespana","OxfamIntermon","Declaracion","reformainter","proceso"],
 
-        "videojuegos": ["MeriStation","vidaextra","Eurogamer_es","3djuegos","Videojuegos","hobby_consolas"]
+        "Videojuegos": ["MeriStation","vidaextra","Eurogamer_es","3djuegos","Videojuegos","hobby_consolas","PSPlusES","PokemonGOespana","BRCDEvg","LVPesLoL",
+                        "TwitchES","Xbox_Spain","Capcom_Es","KochMedia_es","FortniteEsp_","marcaesports","LVPes","Warcraft_ES","Minecraft_ESP","IGN_es",
+                        "ESLspain","Esportmaniacos","AnaitGames","VideojuegosGAME","PlayStationES","HPTXVideojuegos","comunidadxbox","Xbox_Jugones","ttdvideojuegos","FolagoR"],
+
+        "Otros": ["diezminutos_es","Felipez360","Conmicas","skereunpesado","SandraFerrerV","myh_tv","AnimeMangaSpain","LocaportuRopa","volvemos_","FundacionMigrar",
+                  "MigrarEsCultura","LadyLauryCandy","perezreverte","TruthSeekerEs","ENM_UNAM","CanaldeHistoria","medicinisse","FacMedicinaUNAM","PSlCOLOGO","chincheto77",
+                  "paulagonu","javviercalvo","lolaindigomusic","juanrallo","_Cinefilos_","FICM","edcerbero","nippon_es","culturainquieta","Rafael_delRosal"],
         }
+
 
 def get_accounts_tests():
     return {
-        "cocina": ["CocinayVino","CanalCocina","directopaladar","RecetasdeCocina","thermorecetas"],
+        "Cocina": ["thermorecetas","Gastro7islas","ComidasDelPeru","HortoGourmet","gastro_bloguers","gastronomia_zgz","DeMayorCocinero","chefghgonzalez","RAGinforma","gastronomia593","delascosasdelco","igastronomia"],
 
-        "deportes": ["valenciacf","marca","FOXDeportes","ESPNtenis","MarcaBasket"],
+        "Deportes": ["ElGolazoDeGol","DAZN_ES","EFEdeportes","revistalideras","COE_es","juegosolimpicos","Mercado_Ingles","AS_amaliafra","TUDNUSA","NBAspain","deportesyahoo","mundosportextra"],
 
-        "informatica": ["E1Am1g01nf0rma1","abc_tecnologia","HardwareSfera","computerhoy","muycomputer"],
+        "Tecnología y informática": ["E1Am1g01nf0rma1","abc_tecnologia","HardwareSfera","muycomputer","ExpansionTecno","muylinux","TecnonautaTV","_VanCajun","unocero","htcmania","daliadepaz","Wikichava"],
 
-        "politica": ["vox_es","Santi_ABASCAL","PabloIglesias","Politica_LR","LPGPolitica"],
+        "Politica": ["LPGPolitica","pablocasado_","MasPais_Es","euroefe","esglobal_org","IreneMontero","susanadiaz","marianorajoy","UPYD","CsCValenciana","PoliticaPMA","oxfam_es"],
 
-        "videojuegos": ["JaviMoyaCom","Nintenderos","VandalOnline","GamereactorES","Ubisoft_Spain"]
+        "Videojuegos": ["MeridiemGames","Nintenderos","VandalOnline","GamereactorES","Ubisoft_Spain","bethesda_ESP","AlfaBetaJuega","Videojuegos40","CallofDutyES","GeneracionXbox","EspVideojuegos","atomix",],
+
+        "Otros": ["twin_melody","IgnatiusFarray","HistoriaDiceQue","NoSoyLaGente","eduardogavin","Trabalibros","relibertad","LaKefa","ecartelera","viajar","vickicastillo__","ProfesorSnape",]
         }
 
 def get_all_accounts():
@@ -31,7 +48,8 @@ def get_all_accounts():
     return dict
 
 def get_test_accounts_in_order():
-    return [item for sublist in list(get_accounts_tests().values()) for item in sublist]
 
+    lista= [item for sublist in list(get_accounts_tests().values()) for item in sublist]
+    return lista
 def get_length_one_test_theme():
-    return len(get_accounts_tests()["cocina"])
+    return len(get_accounts_tests()["Cocina"])

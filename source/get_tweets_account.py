@@ -27,8 +27,11 @@ mycol = mydb["tweets"]
 
 n_tweets_per_user = 300
 
-for topic in accounts.get_all_accounts().keys():
-    for name in accounts.get_all_accounts()[topic]:
+#for topic in accounts.get_all_accounts().keys():
+for topic in ["Deportes"]:
+    for name in ["atletismoSomos"]: #MeridiemGames]
+    #for name in accounts.get_all_accounts()[topic]:
+    #for name in []:
         # Iterar cada usuario de acount #
         # Informacion del usuario, por si es util para tu aplicacion #
         user = "@"+name
