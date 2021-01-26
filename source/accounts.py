@@ -1,3 +1,6 @@
+from itertools import chain
+
+
 def get_accounts_temas():
     return{
         "Cocina": ["RecetasdeCocina","Cocina_Monstruo","derechupete","mcalabajio","cocinaparados","Dulcesbocados","CocinayVino","CanalCocina","directopaladar","RecetasdeCocina",
@@ -53,3 +56,6 @@ def get_test_accounts_in_order():
     return lista
 def get_length_one_test_theme():
     return len(get_accounts_tests()["Cocina"])
+
+def get_number_accounts():
+    return len(list(chain(*get_all_accounts().values())))

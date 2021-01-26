@@ -41,7 +41,7 @@ def get_tweets_number_data():
         print("")
 
 
-#get_tweets_number_data()
+get_tweets_number_data()
 
 
 def stopwords_to_list_of_lists():
@@ -218,7 +218,9 @@ def calculate_macro_f1_pymongo():
     result=f1_score(y_true=real,y_pred=predict,average="macro")
     print(result)
 
-calculate_macro_f1_pymongo()
+
+
+#calculate_macro_f1_pymongo()
 #save_accounts_themes_wv_info()
 #save_tweets_wv_info()
 #delete "JaviMoyaCom" "h25deportes "
