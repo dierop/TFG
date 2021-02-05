@@ -20,6 +20,7 @@ model = Word2Vec.load('twitter87\\twitter87.model')
 
 
 def get_tweets_number_data():
+    print(mycol.count_documents({}))
     print("Cuentas temas")
     for topic in accounts.get_accounts_temas().keys():
         print("topic:", topic, "tiene", len(accounts.get_accounts_temas()[topic]), "cuentas y",
@@ -27,7 +28,8 @@ def get_tweets_number_data():
                   {"topic": topic, "user.screen_name": {"$in": accounts.get_accounts_temas()[topic]}}), "tweets")
         cursor = mycol.find({"topic": topic})
         for user in accounts.get_accounts_temas()[topic]:
-            print(user, "tiene", mycol.count_documents({"topic": topic, "user.screen_name": user}), "tweets")
+            usuario="@"+user
+            print(usuario, "tiene", mycol.count_documents({"topic": topic, "user.screen_name": user}), "tweets")
         print("")
 
     print("Cuentas test")
@@ -37,12 +39,35 @@ def get_tweets_number_data():
                   {"topic": topic, "user.screen_name": {"$in": accounts.get_accounts_tests()[topic]}}), "tweets")
         cursor = mycol.find({"topic": topic})
         for user in accounts.get_accounts_tests()[topic]:
-            print(user, "tiene", mycol.count_documents({"topic": topic, "user.screen_name": user}), "tweets")
+            usuario = "@" + user
+            print(usuario, "tiene", mycol.count_documents({"topic": topic, "user.screen_name": user}), "tweets")
         print("")
 
+#get_tweets_number_data()
 
-get_tweets_number_data()
+def get_tweets_formato_copiar_tabla():
 
+
+    for topic in accounts.get_accounts_temas().keys():
+        print(topic)
+        for user in accounts.get_accounts_temas()[topic]:
+            print("@"+user)
+        print("")
+        for user in accounts.get_accounts_temas()[topic]:
+            print(mycol.count_documents({"topic": topic, "user.screen_name": user}))
+        print("")
+
+    print("Cuentas test")
+    for topic in accounts.get_accounts_tests().keys():
+        print(topic)
+        for user in accounts.get_accounts_tests()[topic]:
+            print("@" + user)
+        print("")
+        for user in accounts.get_accounts_tests()[topic]:
+            print(mycol.count_documents({"topic": topic, "user.screen_name": user}))
+        print("")
+
+get_tweets_formato_copiar_tabla()
 
 def stopwords_to_list_of_lists():
     fdict = []
@@ -107,8 +132,8 @@ def topics_wv(stopword):
             dic[user] = total
     print("macro_F1:")
     calculate_macro_f1(dic)
-    #print("Distancias:")
-    #view_distances(dic)
+    print("Distancias:")
+    view_distances(dic)
 
 
 
@@ -148,7 +173,9 @@ def calculate_macro_f1(dic):
 """
 f = open("stopwords_list.json", "r")
 stopword = json.load(f)
-topics_wv(stopword[2]) 
+for stop in stopword:
+    topics_wv(stop)
+topics_wv([])
 """
 
 def save_tweets_wv_info():

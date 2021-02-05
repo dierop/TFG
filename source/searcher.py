@@ -129,13 +129,31 @@ class searcher():
         dist, ind = self.temas_tree.query(embedding.reshape(1, -1), k=k)
         return [self.temas_dict[i] for i in ind[0]], dist[0]
 
+    def get_k_cuentas_vecinos(self,k,embedding):
+        dist, ind = self.users_tree.query(embedding.reshape(1, -1), k=k)
+        return [self.users_dict[i] for i in ind[0]], dist[0]
+
+    def get_k_tweets_vecinos(self,k,embedding):
+        dist, ind = self.tweets_tree.query(embedding.reshape(1, -1), k=k)
+        return [self.tweets_dict[i] for i in ind[0]], dist[0]
+
+    def get_tweet_data(self,id):
+        tweet= self.mycol.find_one({"id":id},projection=["user.screen_name","topic", "full_text"])
+        return tweet["user"]["screen_name"], tweet["topic"], tweet["full_text"]
 
 
-prueba = searcher()
-print(prueba.get_k_temas_vecinos(2,prueba.get_data("https://twitter.com/somosvivelibre/status/1353651377902333954")[3]))
-print(prueba.get_k_temas_vecinos(2,prueba.get_data("https://twitter.com/MalditaTech/status/1353710544633655297")[3]))
-print(prueba.get_k_temas_vecinos(2,prueba.get_data("1353331529070628864")[3]))
 """
+prueba = searcher()
+aux = prueba.get_data("https://twitter.com/MalditaTech/status/1353710544633655297")
+print(aux[1],aux[2])
+print(prueba.get_k_temas_vecinos(3,aux[3]))
+print(prueba.get_k_cuentas_vecinos(3,aux[3]))
+print(prueba.get_k_tweets_vecinos(3,aux[3]))
+
+print(prueba.get_k_temas_vecinos(2,prueba.get_data("https://twitter.com/somosvivelibre/status/1353651377902333954")[3]))
+print(prueba.get_k_temas_vecinos(2,))
+print(prueba.get_k_temas_vecinos(2,prueba.get_data("1353331529070628864")[3]))
+
 print(prueba.get_data("1354059133629161473"))
 print(prueba.get_data("https://twitter.com/Kleo_cc"))
 """
