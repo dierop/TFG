@@ -8,7 +8,6 @@ from tweepy import Cursor
 from tweepy import API
 from tweepy import error
 import pymongo
-import accounts
 from twitter_keys import *
 from gensim.models import Word2Vec
 from enum import Enum
@@ -34,13 +33,12 @@ class searcher():
         self.users_tree, self.users_dict = pickle.load(open("data/user_KDTree_dict.pickle", "rb"))
         self.temas_tree, self.temas_dict = pickle.load(open("data/tema_KDTree_dict.pickle", "rb"))
 
-
     def get_tweet(self, id):
         try:
-            tweet = self.api.get_status(id)
+            tweet = self.api.get_status(id, tweet_mode='extended')
         except error.TweepError:
             raise ValueError("El tweet ID no puede ser accedido o no existe")
-        return tweet.text, tweet.author.screen_name
+        return tweet.full_text, tweet.author.screen_name
 
     def account_exists(self, id):
 
@@ -84,7 +82,7 @@ class searcher():
             # es una cuenta
             if len(aux) == 1:
                 tipo = type.USER
-                text = "@" + text
+                text = text
             # es un tweet o algo que no toca y lanzaria error
             elif len(aux) == 3:
                 tipo = type.TWEET
@@ -94,6 +92,7 @@ class searcher():
         # es el nombre de una cuenta
         elif text.startswith("@"):
             tipo = type.USER
+            text=text[1:]
         # es un id de un tweet
         elif text.isnumeric():
             tipo = type.TWEET
@@ -124,22 +123,39 @@ class searcher():
 
         return result
 
-
-    def get_k_temas_vecinos(self,k,embedding):
+    def get_k_temas_vecinos(self, k, embedding):
         dist, ind = self.temas_tree.query(embedding.reshape(1, -1), k=k)
-        return [self.temas_dict[i] for i in ind[0]], dist[0]
+        return [self.temas_dict[i] for i in ind[0]], self.get_distancia_normalizada(dist[0])
 
-    def get_k_cuentas_vecinos(self,k,embedding):
+    def get_k_cuentas_vecinos(self, k, embedding):
         dist, ind = self.users_tree.query(embedding.reshape(1, -1), k=k)
-        return [self.users_dict[i] for i in ind[0]], dist[0]
+        return [self.users_dict[i] for i in ind[0]], self.get_distancia_normalizada(dist[0])
 
-    def get_k_tweets_vecinos(self,k,embedding):
+    def get_k_tweets_vecinos(self, k, embedding):
         dist, ind = self.tweets_tree.query(embedding.reshape(1, -1), k=k)
-        return [self.tweets_dict[i] for i in ind[0]], dist[0]
+        return [self.tweets_dict[i] for i in ind[0]], self.get_distancia_normalizada(dist[0])
 
-    def get_tweet_data(self,id):
-        tweet= self.mycol.find_one({"id":id},projection=["user.screen_name","topic", "full_text"])
+    def get_tweet_data(self, id):
+        tweet = self.mycol.find_one({"id": id}, projection=["user.screen_name", "topic", "full_text"])
         return tweet["user"]["screen_name"], tweet["topic"], tweet["full_text"]
+
+    def get_distancia_normalizada(self, distancias):
+        """result=list(8)
+        i=0
+        for dis in distancias:
+            if i==0:
+                aux=dis
+            result[i]=round((dis/aux) * 100) / 100
+            i+=1
+        return result
+        """
+        aux = distancias[0]
+        i=1
+        while aux<0.001:
+            aux = distancias[i]
+            i+=1
+
+        return [round((dis / aux) * 1000) / 1000 for dis in distancias]
 
 
 """

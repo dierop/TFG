@@ -43,7 +43,7 @@ def get_tweets_number_data():
             print(usuario, "tiene", mycol.count_documents({"topic": topic, "user.screen_name": user}), "tweets")
         print("")
 
-#get_tweets_number_data()
+get_tweets_number_data()
 
 def get_tweets_formato_copiar_tabla():
 
@@ -67,7 +67,7 @@ def get_tweets_formato_copiar_tabla():
             print(mycol.count_documents({"topic": topic, "user.screen_name": user}))
         print("")
 
-get_tweets_formato_copiar_tabla()
+#get_tweets_formato_copiar_tabla()
 
 def stopwords_to_list_of_lists():
     fdict = []
