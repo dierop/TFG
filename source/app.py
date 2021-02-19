@@ -14,7 +14,10 @@ buscador = searcher.searcher()
 def buscar():
     aux = buscador.get_data(entry.get('1.0', 'end-1c'))
     autor_text['text'] = "Autor: "
-    autor['text'] = "@"+aux[2]
+    if aux[0] == searcher.type.TEXT:
+        autor['text'] = aux[2]
+    else:
+        autor['text'] = "@"+aux[2]
     if aux[0] != searcher.type.USER:
         info['text'] = "Texto: "
         info_text['text'] = aux[1]

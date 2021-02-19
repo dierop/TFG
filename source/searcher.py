@@ -140,22 +140,8 @@ class searcher():
         return tweet["user"]["screen_name"], tweet["topic"], tweet["full_text"]
 
     def get_distancia_normalizada(self, distancias):
-        """result=list(8)
-        i=0
-        for dis in distancias:
-            if i==0:
-                aux=dis
-            result[i]=round((dis/aux) * 100) / 100
-            i+=1
-        return result
-        """
-        aux = distancias[0]
-        i=1
-        while aux<0.001:
-            aux = distancias[i]
-            i+=1
-
-        return [round((dis / aux) * 1000) / 1000 for dis in distancias]
+        # (x - x.min()) / (x.max() - x.min())
+        return [round(((dis - distancias[0]) / (distancias[-1] - distancias[0]))*100)/100 for dis in distancias]
 
 
 """
