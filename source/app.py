@@ -32,7 +32,7 @@ def buscar():
     for i in range(0, num_temas):
         tree_tema.insert("", i, values=(i + 1, temas[1][i], temas[0][i]))
 
-    num_cuentas = 6
+    num_cuentas = 8
     cuentas = buscador.get_k_cuentas_vecinos(num_cuentas, aux[3])
     for i in range(0, num_cuentas):
         tree_cuentas.insert("", i, values=(
@@ -52,8 +52,8 @@ def tree_columna_numero_temas(tree):
     tree.heading("Numero", anchor=W)
     tree.column("Temas", minwidth=75, stretch=Y, anchor=W)
     tree.heading("Temas", text="Temas", anchor=W, )
-    tree.column("Distancias", minwidth=125, width=125, stretch=Y, anchor=W)
-    tree.heading("Distancias", text="Distancia relativa", anchor=W, )
+    tree.column("Distancias", minwidth=75, width=80, stretch=Y, anchor=W)
+    tree.heading("Distancias", text="Distancia", anchor=W, )
 
 
 def tree_columna_nombre(tree):
@@ -79,10 +79,12 @@ def on_focusout(event):
         entry.config(fg='grey')
 
 
-root.geometry("900x800")
+root.geometry("850x800")
 root.title("Buscador Twitter")
+photo = PhotoImage(file = "images/logo_twitter.png")
+root.iconphoto(False, photo)
 
-titulo = Label(root, text="Buscador Semantico Twitter", font=('Helvetica', 15, 'bold'))
+titulo = Label(root, text="Buscador Semántico Twitter", font=('Helvetica', 15, 'bold'))
 titulo.pack(pady=10)
 
 explicacion = Label(root, anchor="w", text="Clasifica cuentas, tweets o texto propio", font=('Helvetica', 10),
@@ -94,15 +96,15 @@ frame.pack(padx=10, fill="x")
 
 # entry = Entry(frame, width=40,height=20, font=('Helvetica', 15))
 # entry.grid(row=1, column=0, columnspan=3, pady=5, padx=10)
-entry = Text(frame, height=3, width=100, font=('Helvetica', 11))
+entry = Text(frame, height=3, width=114, font=('Helvetica', 10))
 entry.insert(1.0, Texto_explicacion)
 entry.bind('<FocusIn>', on_entry_click)
 entry.bind('<FocusOut>', on_focusout)
 entry.config(fg='grey')
 entry.grid(row=1, column=0, columnspan=3, pady=5, padx=5)
 
-button_search = Button(frame, text="Buscar", command=buscar)
-button_search.grid(row=2, column=3, padx=5)
+button_search = Button(frame, text="Buscar",font=('Helvetica', 10, 'bold'), command=buscar)
+button_search.grid(row=2, column=2, padx=5,pady=5,sticky=E)
 
 info_frame = Frame(root, padx=10, pady=5)
 info_frame.pack(padx=10,fill="x")
@@ -115,7 +117,7 @@ autor.grid(row=0, column=1,sticky = W+N)
 # autor.grid(row=2, column=0,columnspan=3, pady=5, padx=5)
 info = Label(info_frame, anchor="w", text=" ", font=('Helvetica', 10, 'bold'), justify=LEFT, )
 info.grid(row=1, column=0,sticky = W+N)
-info_text = Label(info_frame, anchor="w", wraplengt=800, text=" ", font=('Helvetica', 10), justify=LEFT)
+info_text = Label(info_frame, anchor="w", wraplengt=750, text=" ", font=('Helvetica', 10), justify=LEFT)
 info_text.grid(row=1, column=1,sticky = W+N)
 
 
